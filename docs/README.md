@@ -10,7 +10,6 @@
 
 * controller
   * PlayController
-    * gameNumber : 임의로 생성된 3자리 숫자 
     * guess
       1. Player에게 입력받은 ballNumber를 검증한다.
       2. Player에게 입력받은 ballNumber를 Computer에게 전달한다.
@@ -32,15 +31,19 @@
 
 * service
   * ComputerService
+    * computerBall: 컴퓨터가 가지고 있는 임의의 3자리 숫자
     * createGameNumber
-        1. 임의의 3자리 gameNumber를 생성한다.
+      1. 임의의 3자리 gameNumber를 생성한다.
     * compare
-        1. ballNumber와 gameNumber를 비교한다.
-        2. hint를 반환한다.
+      1. playerBall와 computerBall를 비교한다.
+      2. hint를 반환한다.
   * ValidationService
-      * validateBallNumber
-          1. Player에게 입력받은 ballNumber가 3자리인지 검증한다.
-          2. 검증 결과를 반환한다.
-      * validateFinishNumber
-          1. Player에게 입력받은 finishNumber가 1 또는 2인지 검증한다.
-          2. 검증 결과를 반환한다.
+    * validateBallNumberLength
+      1. Player에게 입력받은 ballNumber가 3자리인지 검증한다.
+      2. 검증 결과를 반환한다.
+    * validateDuplicateBallNumber
+      1. Player에게 입력받은 ballNumber에 중복된 숫자가 있는지 검증한다.
+      2. 검증 결과를 반환한다.
+    * validateFinishNumber
+      1. Player에게 입력받은 finishNumber가 1 또는 2인지 검증한다.
+      2. 검증 결과를 반환한다.
