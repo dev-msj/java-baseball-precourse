@@ -45,7 +45,7 @@ public class Hint {
             return "";
         }
 
-        return String.format("%s볼", this.strike);
+        return String.format("%s볼", this.ball);
     }
 
     private String makeSpace(final String strikeString, final String ballString) {

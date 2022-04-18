@@ -33,4 +33,14 @@ public class Ball {
     private int parseCharToInt(char number) {
         return Character.getNumericValue(number);
     }
+
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int number : this.ballNumber) {
+            stringBuilder.append(number);
+        }
+
+        return stringBuilder.toString();
+    }
 }
