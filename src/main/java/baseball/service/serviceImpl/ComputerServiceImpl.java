@@ -9,14 +9,16 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ComputerServiceImpl implements ComputerService {
-    private final Ball computerBall;
+    private Ball playerBall;
+    private Ball computerBall;
     private Hint hint;
 
-    public ComputerServiceImpl() {
-        this.computerBall = new Ball(createGameNumber());
+    @Override
+    public void createGameNumber() {
+        this.computerBall = new Ball(pickGameNumberList());
     }
 
-    private List<Integer> createGameNumber() {
+    private List<Integer> pickGameNumberList() {
         List<Integer> numberList = Arrays.asList(0, 0, 0);
         for (int i = 0; i < 3; i++) {
             int pickedNumber = pickRandomNumber(numberList);
@@ -27,10 +29,10 @@ public class ComputerServiceImpl implements ComputerService {
     }
 
     private int pickRandomNumber(final List<Integer> numberList) {
-        int pickedNumber = Randoms.pickNumberInRange(1, 9);
-        if (isDuplicateNumber(numberList, pickedNumber)) {
-            pickedNumber = pickRandomNumber(numberList);
-        }
+        int pickedNumber;
+        do {
+            pickedNumber = Randoms.pickNumberInRange(1, 9);
+        } while (isDuplicateNumber(numberList, pickedNumber));
 
         return pickedNumber;
     }
@@ -41,27 +43,28 @@ public class ComputerServiceImpl implements ComputerService {
 
     @Override
     public Hint compare(final Ball playerBall) {
+        this.playerBall = playerBall;
         this.hint = new Hint();
         for (int i = 0; i < 3; i++) {
-            int playerBallNumber = playerBall.getBallNumber().get(i);
-            checkHintFromComputerNumber(playerBallNumber, i);
+            int computerBallNumber = this.computerBall.getBallNumber().get(i);
+            checkHintFromComputerBallNumber(computerBallNumber, i);
         }
 
         return this.hint;
     }
 
-    private void checkHintFromComputerNumber(final int playerBallNumber, final int index) {
-        if (isContainPlayerBallNumber(playerBallNumber)) {
-            isStrike(playerBallNumber, index);
+    private void checkHintFromComputerBallNumber(final int computerBallNumber, final int index) {
+        if (isContainComputerBallNumber(computerBallNumber)) {
+            updateHint(computerBallNumber, index);
         }
     }
 
-    private boolean isContainPlayerBallNumber(final int playerBallNumber) {
-        return this.computerBall.getBallNumber().contains(playerBallNumber);
+    private boolean isContainComputerBallNumber(final int computerBallNumber) {
+        return this.playerBall.getBallNumber().contains(computerBallNumber);
     }
 
-    private void isStrike(final int playerBallNumber, final int index) {
-        if (findComputerBallNumberIndex(playerBallNumber) == index) {
+    private void updateHint(final int computerBallNumber, final int index) {
+        if (findIndexFromPlayerBallNumber(computerBallNumber) == index) {
             this.hint.setStrike(this.hint.getStrike() + 1);
 
             return;
@@ -70,7 +73,7 @@ public class ComputerServiceImpl implements ComputerService {
         this.hint.setBall(this.hint.getBall() + 1);
     }
 
-    private int findComputerBallNumberIndex(final int playerBallNumber) {
-        return this.computerBall.getBallNumber().indexOf(playerBallNumber);
+    private int findIndexFromPlayerBallNumber(final int computerBallNumber) {
+        return this.playerBall.getBallNumber().indexOf(computerBallNumber);
     }
 }
