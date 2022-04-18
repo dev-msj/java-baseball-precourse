@@ -46,9 +46,12 @@
 
 <br>
 
-4. Application
-    1. 게임을 시작한다.
-    2. Player에게 ballNumber를 입력 받는다.
-    3. Player에게 결과를 출력한다.
-    4. Player가 정답을 맞추면 finishNumber를 입력받는다.
-    5. Player가 2를 입력하면 게임 종료를 출력하고 애플리케이션을 종료한다.
+4. GameViewer
+   1. start
+       1. 게임을 시작한다.
+       2. Player에게 ballNumber를 입력 받는다.
+       3. 입력받은 ballNumber를 검증한다.
+       4. Player에게 결과를 출력한다.
+       5. Player가 정답을 맞추면 finishNumber를 입력받는다.
+       6. 입력받은 finishNumber를 검증한다.
+       7. Player가 2를 입력하면 게임 종료를 출력하고 애플리케이션을 종료한다.
