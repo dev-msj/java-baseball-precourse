@@ -21,25 +21,28 @@
    2. ValidationService
       1. validateBallNumberLength
           1. Player에게 입력받은 ballNumber가 3자리인지 검증한다.
-          2. 검증 결과를 반환한다.
-      2. validateDuplicateBallNumber
+      2. validateBallNumberZero
+         1. Player에게 입력받은 ballNumber에 0이 존재하는지 검증한다.
+      3. validateBallNumberType
+         1. Player에게 입력받은 ballNumber가 int형으로 parse되는지 검증한다.
+      4. validateDuplicateBallNumber
           1. Player에게 입력받은 ballNumber에 중복된 숫자가 있는지 검증한다.
-          2. 검증 결과를 반환한다.
-      3. validateFinishNumber
+      5. validateFinishNumber
           1. Player에게 입력받은 finishNumber가 1 또는 2인지 검증한다.
-          2. 검증 결과를 반환한다.
 
 <br>
 
 3. controller
    1. PlayController
-       1. guess
-           1. Player에게 입력받은 ballNumber를 검증한다.
-           2. Player에게 입력받은 ballNumber를 Computer에게 전달한다.
-           3. Computer에게 결과를 받아서 반환한다.
-       2. finish
-           1. Player에게 입력받은 finishNumber를 검증한다.
-           2. 입력받은 값이 2면 "finish"를 반환한다.
+      1. initialize
+         1. 임의의 3자리 숫자를 생성한다.
+      2. guess
+          1. Player에게 입력받은 ballNumber를 검증한다.
+          2. Player에게 입력받은 ballNumber를 Computer에게 전달한다.
+          3. Computer에게 결과를 받아서 반환한다.
+      3. finish
+          1. Player에게 입력받은 finishNumber를 검증한다.
+          2. 입력받은 값이 2면 "finish"를 반환한다.
 
 <br>
 
